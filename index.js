@@ -12,12 +12,12 @@ app.use(
 
 app.get('/api/:date?', (req, res) => {
 	try {
-		const date = req.params.date ? new Date(req.params.date).getTime() : new Date().getTime()
+		const date = new Date(isNaN(Number(req.params.date)) ? req.params.date : Number(req.params.date))
 
 		if (date) {
 			return res.send({
-				unix: date,
-				utc: new Date(date).toUTCString(),
+				unix: date.getTime(),
+				utc: date.toUTCString(),
 			})
 		}
 	} catch (error) {}
