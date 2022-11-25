@@ -12,7 +12,7 @@ app.use(
 
 app.get('/api/:date?', (req, res) => {
 	try {
-		const date = req.params.date ? Number(req.params.date) : new Date().getTime()
+		const date = req.params.date ? new Date(req.params.date).getTime() : new Date().getTime()
 
 		if (date) {
 			return res.send({
