@@ -14,7 +14,7 @@ app.get('/api/:date?', (req, res) => {
 	try {
 		const date = new Date(isNaN(Number(req.params.date)) ? req.params.date : Number(req.params.date))
 
-		if (date) {
+		if (date && !isNaN(date.getTime())) {
 			return res.send({
 				unix: date.getTime(),
 				utc: date.toUTCString(),
