@@ -12,7 +12,9 @@ app.use(
 
 app.get('/api/:date?', (req, res) => {
 	try {
-		const date = new Date(isNaN(Number(req.params.date)) ? req.params.date : Number(req.params.date))
+		const date = req.params.date
+			? new Date(isNaN(Number(req.params.date)) ? req.params.date : Number(req.params.date))
+			: new Date()
 
 		if (date && !isNaN(date.getTime())) {
 			return res.send({
